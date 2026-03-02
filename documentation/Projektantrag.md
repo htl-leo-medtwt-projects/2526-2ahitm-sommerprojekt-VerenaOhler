@@ -24,7 +24,6 @@ Gefangene Gegner schweben in einer Blase und können durch Berührung geplatzt w
 ## Mechanik
 
 ### Grundlegende Spielmechanik
-- 2D-Seitenansicht im Browser  
 - Bewegung nach links/rechts  
 - Springen  
 - Blasen schießen  
