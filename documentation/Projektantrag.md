@@ -64,3 +64,24 @@ Gefangene Gegner schweben in einer Blase und können durch Berührung geplatzt w
 **Merkmale:**  
 - Leicht zugänglich für neue Spieler  
 - Steigende Schwierigkeit bietet Herausforderung für erfahrene Spieler
+
+##
+### Unterschiede
+#### Bubble Bobble
+
+ - 100 levels
+ - 2 Hauptcharaktere
+ - Extend -> Buchstaben einsammeln für extra Leben
+ - Kein Shop
+ - 2 Player Game
+ - Highscore
+ 
+#### Bubble Dobble
+ - 5 levels
+ - Cosmetic Shop System
+ - eigen Designs von Level-Umgebung
+ - Münzsystem
+ - max 3 Leben
+ - Single Player Game
+ - Accountsystem für Highscore
+ - **Optional:** Themenauswahl
