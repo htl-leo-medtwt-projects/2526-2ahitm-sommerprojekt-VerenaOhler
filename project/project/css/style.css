@@ -1,0 +1,38 @@
+body {
+  background: url("../img/stars-galaxy-3840x2160-10307.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.button {
+  text-transform: uppercase;
+  background-color: #124d8e;
+  width: 550px;
+  height: 80px;
+  color: #000;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #525376;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  padding: 10px;
+}
+
+#btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  justify-self: end;
+  margin-top: 35vh;
+}
+
+#logo {
+  width: 1142px;
+  height: 909px;
+  aspect-ratio: 49/39;
+  z-index: 1;
+  position: absolute;
+}
