@@ -30,9 +30,11 @@ body {
 }
 
 #logo {
-  width: 1142px;
-  height: 909px;
+  width: 822px;
+  height: 625px;
   aspect-ratio: 49/39;
   z-index: 1;
   position: absolute;
+  top: 0;
+  margin-top: 0px;
 }
