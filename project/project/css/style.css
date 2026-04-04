@@ -1,3 +1,13 @@
+@font-face {
+  font-family: header;
+  src: url(../fonts/ARCADECLASSIC.TTF); 
+}
+
+@font-face {
+  font-family: button-font;
+  src: url(../fonts/edit-undo.brk.ttf);
+}
+
 body {
   background: url("../img/stars-galaxy-3840x2160-10307.jpg");
   background-size: cover;
@@ -20,6 +30,7 @@ body {
   line-height: normal;
   text-align: center;
   padding: 10px;
+  font-family: button-font;
 }
 
 #btn-container {
@@ -38,4 +49,57 @@ body {
   position: absolute;
   top: 0;
   margin-top: 0px;
+}
+
+  /*****************/
+ /* COSMETIC SHOP */
+/*****************/
+#shop-container {
+  width: 85vw;
+  height: 82vh;
+  opacity: 0.50;
+  background: #E5AA7A;
+  border-radius: 60px;
+  position: absolute;
+  left: 87px;
+  top: 5.5rem;
+}
+
+#shop-header {
+  font-size: 6rem;
+  line-height: normal;
+  text-align: center;
+  color: #7479D4;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #525376;
+  margin-top: 2rem;
+  font-family: header;
+}
+
+#shop-closeButton {
+  background-color: #ff0000;
+  position: absolute;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 10px;
+
+  right: 6rem;
+  top: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.3); 
+  cursor: pointer;
+  z-index: 2;
+}
+
+#shop-closeButtonText {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  transform: translateY(-1px); 
 }
