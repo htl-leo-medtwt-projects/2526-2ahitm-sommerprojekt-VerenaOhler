@@ -122,8 +122,8 @@ body {
 /*******************/
 
 #setting-container {
-  width: 100%;
-  height: 100%; 
+  width: 61vw;
+  height: 84vh; 
   background: #D9D9D9;
 }
 
@@ -144,5 +144,37 @@ body {
   font-family: header;
   font-size: 6.4rem;
   text-align: center;
-  
+}
+
+#yesButton{
+  background-color: #00FF37;
+  width: 22vw;
+  height: 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: button-font;
+  color: #000;
+  text-align: center;
+}
+
+#noThanksButton {
+  background-color: #FF0000;
+  width: 22vw;
+  height: 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: button-font;
+  color: #000;
+  text-align: center;
+}
+
+#tutorialPreview-buttonWrapper {
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  margin-top: 5vh;
 }
