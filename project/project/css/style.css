@@ -123,16 +123,6 @@ body {
 }
 
 /*******************/
-/* SETTING PAGE */ 
-/*******************/
-
-#setting-container {
-  width: 61vw;
-  height: 84vh; 
-  background: #D9D9D9;
-}
-
-/*******************/
 /* TUTORIAL PAGE */ 
 /*******************/
 
@@ -162,6 +152,7 @@ body {
   font-family: button-font;
   color: #000;
   text-align: center;
+  cursor: pointer;
 }
 
 #noThanksButton {
@@ -175,6 +166,7 @@ body {
   font-family: button-font;
   color: #000;
   text-align: center;
+  cursor: pointer;
 }
 
 #tutorialPreview-buttonWrapper {
