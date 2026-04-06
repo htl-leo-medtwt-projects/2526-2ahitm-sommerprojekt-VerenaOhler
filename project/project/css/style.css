@@ -178,3 +178,74 @@ body {
   justify-content: center;
   margin-top: 5vh;
 }
+
+#setting-closeButton {
+  background-color: #ff0000;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  right: 6rem;
+  top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.3); 
+  cursor: pointer;
+  z-index: 2;
+}
+
+#setting-closeButtonText {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  transform: translateY(-1px); 
+}
+
+#setting-container {
+    width: 300px;
+    background: #cfcfcf;
+    padding: 20px;
+    position: absolute;
+    top: 9vh;
+    left: 35vw;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+}
+
+
+.setting-box {
+    width: 18px;
+    height: 18px;
+    background: gray;
+}
+
+
+.toggle-input {
+    display: none;
+}
+
+
+.dropdown-label {
+    cursor: pointer;
+    display: block;
+    margin: 12px 0;
+}
+
+
+.sub-settings {
+    display: none;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+#setting-wrapper {
+  position: relative;
+  top: 15vh;
+}

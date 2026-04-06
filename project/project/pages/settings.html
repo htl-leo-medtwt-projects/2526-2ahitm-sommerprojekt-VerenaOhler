@@ -6,12 +6,34 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div id="setting-container">
-        <div id="settings-wrapper">
-            <p>Music</p>
-            <p>SFX</p>
-            
+
+<div id="setting-container">
+    <div id="setting-closeButton">
+            <span id="setting-closeButtonText">X</span>
+        </div>
+    <div id="setting-wrapper">
+    <div class="setting-row">
+        <span>Music</span>
+        <div class="setting-box"></div>
+    </div>
+    <div class="setting-row">
+        <span>SFX</span>
+        <div class="setting-box"></div>
+    </div>
+    <input type="checkbox" id="lang-toggle" class="toggle-input">
+    <label for="lang-toggle" class="dropdown-label">Language ↓</label>
+    <div class="sub-settings">
+        <p>> English</p>
+        <p>> German</p>
+    </div>
+    <input type="checkbox" id="move-toggle" class="toggle-input">
+    <label for="move-toggle" class="dropdown-label">Movement ↓</label>
+        <div class="sub-settings">
+            <p>> WASD</p>
+            <p>> Arrow Keys</p>
         </div>
     </div>
+</div>
+
 </body>
 </html>
