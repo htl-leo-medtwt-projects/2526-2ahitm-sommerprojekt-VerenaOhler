@@ -31,6 +31,8 @@ body {
   text-align: center;
   padding: 10px;
   font-family: button-font;
+  text-decoration: none;
+  
 }
 
 #btn-container {
@@ -39,15 +41,18 @@ body {
   gap: 23px;
   justify-self: end;
   margin-top: 35vh;
+  margin-right: 0px;
 }
 
 #logo {
-  width: 822px;
+  width: 820px;
   height: 620px;
   aspect-ratio: 49/39;
   z-index: 1;
   position: absolute;
-  top: 0;
+  top: 2px;
+  left: 47px;
+  padding-top: 0px;
   margin-top: 0px;
 }
 
