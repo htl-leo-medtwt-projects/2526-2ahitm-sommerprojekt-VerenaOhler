@@ -176,6 +176,26 @@ body {
   margin-top: 5vh;
 }
 
+#tutorial-explainationContainer{
+  width: 60vw;
+  height: 20vh; 
+  background: #E5AA7AA6;
+  font-family: button-font;
+  display: none;
+  font-size: 1.5rem;
+  border-radius: 29px;
+  position: absolute;
+  top: 62vh;
+  left: 20vw;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+} 
+
+#tutorial-explainationContainer strong {
+  color: #7479D4;
+}
+
 /*******************/
 /* SETTING PAGE */  
 /*******************/
