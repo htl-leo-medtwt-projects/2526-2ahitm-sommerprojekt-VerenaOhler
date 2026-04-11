@@ -196,6 +196,20 @@ body {
   color: #7479D4;
 }
 
+#tutorial-gotItButton {
+  background-color: #D9D9D9;
+  width: 22vw;
+  height: 5vh;
+  position: absolute;
+  bottom: -20px;
+  right: -30px;
+  font-size: 2rem;
+  font-family: button-font;
+  color: #000;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1vh;
+}
 /*******************/
 /* SETTING PAGE */  
 /*******************/
