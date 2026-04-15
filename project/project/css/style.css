@@ -300,7 +300,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 20px  ;
+  margin: 20px;
+  display: none;
 }
 
 .win-btn{
@@ -312,6 +313,5 @@ body {
   font-size: 2rem;
   padding-top: 20px;
   cursor: pointer;
-  display: none;
-  text-decoration: none;
+  
 }
