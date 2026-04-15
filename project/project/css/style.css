@@ -312,4 +312,6 @@ body {
   font-size: 2rem;
   padding-top: 20px;
   cursor: pointer;
+  display: none;
+  text-decoration: none;
 }
