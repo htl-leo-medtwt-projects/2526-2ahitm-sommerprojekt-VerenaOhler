@@ -1,0 +1,52 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Bub",
+      "img" : "../img/pixil-frame-0 (1).png",
+      "unlocked": true,
+      "found": true,
+      "color": "green"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "img" : "",
+      "unlocked": false,
+      "found": false,
+      "color": "blue"
+    },
+    {
+      "id": 3,
+      "name": "Luna",
+      "img" : "",
+      "unlocked": false,
+      "found": false,
+      "color": "purple"
+    },
+    {
+      "id": 4,
+      "name": "Pyro",
+      "img" : "",
+      "unlocked": false,
+      "found": false,
+      "color": "red"
+    },
+    {
+      "id": 5,
+      "name": "Glacia",
+      "img" : "",
+      "unlocked": false,
+      "found": false,
+      "color": "cyan"
+    },
+    {
+      "id": 6,
+      "name": "Shadow",
+      "img" : "",
+      "unlocked": false,
+      "found": false,
+      "color": "black"
+    }
+  ]
+}
