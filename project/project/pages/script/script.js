@@ -17,6 +17,16 @@ let GAME_CONFIG = {
     characterSpeed: 5 
 }
 
+let GAME_SCREEN = {
+    surface: document.getElementById('surface'),
+    surfaceScale: '95%'
+}
+
+if (GAME_SCREEN.surface) {
+    GAME_SCREEN.surface.style.transform =
+        `scale(${parseFloat(GAME_SCREEN.surfaceScale)/100 * (window.innerWidth / GAME_SCREEN.surface.clientWidth)})`;
+}
+
 function viewTutorial(){
     previewContainer.style.display = "none"
     tutorialContainer.style.display = "block"
@@ -47,6 +57,7 @@ document.onkeyup = keyListenerUp;
 function keyListenerDown(e) {
     if (e.key === "ArrowLeft") { // Left arrow
         KEY_EVENTS.leftArrow = true;
+        console.log('+')
     }
     if (e.key === "ArrowUp") { // Up arrow
         KEY_EVENTS.upArrow = true;
@@ -73,17 +84,15 @@ function keyListenerUp(e) {
     }
 }
 
-function movePlayer(dx, dy, dr){
-     let originalX = parseFloat(getComputedStyle(PLAYER.box).left);
-    let originalY = parseFloat(getComputedStyle(PLAYER.box).top);
+function startGame(){
+    playerX = 350;
+    playerY = 180;
 
-    PLAYER.box.style.left = (originalX + dx) + 'px';
-    PLAYER.box.style.top = (originalY + dy) + 'px';
+    PLAYER.box.style.left = playerX + 'px';
+    PLAYER.box.style.top = playerY + 'px';
 
-    if (dr != 0 && dr != PLAYER.spriteDirection) {
-        PLAYER.spriteDirection = dr;
-        PLAYER.box.style.transform = `scaleX(${dr})`;
-    }
+    console.log('hi');
+    gameLoop();
 }
 
 function animatePlayer() {
@@ -98,16 +107,8 @@ function animatePlayer() {
     }
 }
 
-function startGame(){
-    //window.location.href = "../index.html"
-    PLAYER.box.style.left = '350px';
-    PLAYER.box.style.top = '180px';
-
-    gameLoop();
-}
-
 function gameLoop() {
-
+    console.log('helo')
     if (KEY_EVENTS.leftArrow) {
         movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
         //animatePlayer();

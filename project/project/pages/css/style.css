@@ -14,6 +14,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
+  color: #fff;
 }
 
 .button {
@@ -368,4 +369,11 @@ body {
   position: absolute;
   top: 350px; 
   left: 180px; 
+}
+
+#surface {
+  border: 3px solid rgb(68, 221, 183);
+  height: 520px;
+  width: 1130px;
+  position: relative;
 }
