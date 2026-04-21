@@ -365,4 +365,7 @@ body {
   width: 100px;
   height: 100px;
   background-color: #ff0000;
+  position: absolute;
+  top: 350px; 
+  left: 180px; 
 }

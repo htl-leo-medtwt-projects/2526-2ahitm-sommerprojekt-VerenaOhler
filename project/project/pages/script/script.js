@@ -74,8 +74,8 @@ function keyListenerUp(e) {
 }
 
 function movePlayer(dx, dy, dr){
-    let originalX = parseFloat(PLAYER.box.style.left)
-    let originalY = parseFloat(PLAYER.box.style.top)
+     let originalX = parseFloat(getComputedStyle(PLAYER.box).left);
+    let originalY = parseFloat(getComputedStyle(PLAYER.box).top);
 
     PLAYER.box.style.left = (originalX + dx) + 'px';
     PLAYER.box.style.top = (originalY + dy) + 'px';
@@ -98,27 +98,34 @@ function animatePlayer() {
     }
 }
 
+function startGame(){
+    //window.location.href = "../index.html"
+    PLAYER.box.style.left = '350px';
+    PLAYER.box.style.top = '180px';
+
+    gameLoop();
+}
+
 function gameLoop() {
 
     if (KEY_EVENTS.leftArrow) {
         movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
-        animatePlayer();
+        //animatePlayer();
     }
     if (KEY_EVENTS.rightArrow) {
         movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
-        animatePlayer();
+        //animatePlayer();
     }
     if (KEY_EVENTS.upArrow) {
         movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
-        animatePlayer();
+        //animatePlayer();
     }
     if (KEY_EVENTS.downArrow) {
         movePlayer(0, GAME_CONFIG.characterSpeed, 0);
-        animatePlayer();
+        //animatePlayer();
         
     }
 
     gameLoopTimeout = setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); // async recursion
 }
 
-gameLoop()
