@@ -1,5 +1,5 @@
 {
-  "characters": [
+  "characters" [
     {
       "id": 1,
       "name": "Bub",
