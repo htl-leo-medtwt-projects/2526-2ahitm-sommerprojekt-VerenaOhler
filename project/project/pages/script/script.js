@@ -2,8 +2,8 @@ let previewContainer = document.getElementById("tutorialPreview-container")
 let tutorialContainer = document.getElementById("tutorial-explainationContainer")
 
 
-let winPage = document.getElementById('win')
-let loosePage = document.getElementById('loose')
+let winPage = document.getElementById('winbtn')
+let loosePage = document.getElementById('loosebtn')
 
 let PLAYER = {
     box: document.getElementById('playerBox'),
@@ -55,7 +55,6 @@ document.onkeyup = keyListenerUp;
 function keyListenerDown(e) {
     if (e.key === "ArrowLeft") { // Left arrow
         KEY_EVENTS.leftArrow = true;
-        console.log('+')
     }
     if (e.key === "ArrowUp") { // Up arrow
         KEY_EVENTS.upArrow = true;
@@ -167,4 +166,28 @@ function gameLoop() {
         PLAYER.box.style.top = playerY + 'px';
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
     }
+   
+    //const buySound = new UIfx("sounds/buy.mp3");
+
+function buyCharacter(button, name, number) {         
+    let state = button.dataset.state; //Chatgpt hat das vorgeschlagen
+    let characterImg = document.querySelectorAll(".character-img");
+
+    if (state === "buy") {
+        characterImg[number].style.filter = "grayscale(100%)";
+        button.dataset.state = "equip";
+        button.innerHTML = "Equip";
+        buySound.play();
+    } else if (state === "equip") {
+        characterImg[number].style.filter = "grayscale(0%)";
+        button.dataset.state = "unequip";
+        console.log("Equipped:", name);
+        button.innerHTML = "Unequip";   
+    } else {
+        characterImg[number].style.filter = "grayscale(100%)";
+        button.dataset.state = "equip";
+        console.log("Unequipped:", name);
+        button.innerHTML = "Equip";
+    }
+}
 startGame();

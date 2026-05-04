@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmetic shop</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./script/script.js" defer></script>
-</head>
+    <!-- <script src="https://unpkg.com/uifx/dist/uifx.min.js"></script>
+</head> -->
+
 <body>
-        <div id="shop-header">COSMETIC - SHOP</div>
-        <div id="shop-closeButton">
-            <span onclick="closeSettings()" id="shop-closeButtonText">X</span>
-        </div>    
-            <div id="shop-container">
-                    <div id="shop-wrapper">
-                        <div class="shop-items"></div>
-                        <div class="shop-items"></div>
-                        <div class="shop-items"></div>
-                        <div class="shop-items"></div>
-                        <div class="shop-items"></div>
-                        <div class="shop-items"></div>
-                    </div>
+    <div id="shop-header">COSMETIC - SHOP</div>
+    <div id="shop-closeButton">
+        <span onclick="closeSettings()" id="shop-closeButtonText">X</span>
+    </div>
+    <div id="shop-container">
+        <div id="shop-wrapper">
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bub', 0)">
+                    Buy
+                </div>
             </div>
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bob')">
+                    Buy
+                </div>
+            </div>
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Luna', 2)">
+                    Buy
+                </div>
+            </div>
+
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Pyro', 3)">
+                    Buy
+                </div>
+            </div>
+
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Glacia', 4)">
+                    Buy
+                </div>
+            </div>
+            <div class="shop-items">
+                <img src="./img/pixil-frame-0.png" alt="character" class="character-img">
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Shadow', 5)">
+                    Buy
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
+
 </html>
