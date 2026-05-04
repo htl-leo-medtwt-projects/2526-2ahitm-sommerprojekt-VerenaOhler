@@ -12,10 +12,10 @@ let PLAYER = {
     pointCount: 0
 };
 
-// 🔥 FIX: missing globals
 let playerX = 0;
 let playerY = 0;
 let canJump = true;
+let isCharacterEquipped = false;
 
 let buySound = new Howl({
     src: ['./sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
@@ -58,7 +58,7 @@ function loose() {
     if (loosePage) loosePage.style.display = 'block';
 }
 
-// INPUTS
+
 let KEY_EVENTS = {
     leftArrow: false,
     rightArrow: false,
@@ -92,7 +92,7 @@ function keyListenerUp(e) {
     if (e.key === "d") KEY_EVENTS.d = false;
 }
 
-// MOVE PLAYER
+
 function movePlayer(x, y, direction) {
     playerX += x;
     playerY += y;
@@ -111,7 +111,7 @@ function movePlayer(x, y, direction) {
     }
 }
 
-// GAME START (safe)
+
 function startGame() {
     if (!PLAYER.box) {
         console.error("playerBox not found in HTML");
@@ -131,7 +131,7 @@ function startGame() {
     gameLoop();
 }
 
-// ANIMATION (safe)
+
 function animatePlayer() {
     if (!PLAYER.spriteImg) return;
 
@@ -149,7 +149,7 @@ function animatePlayer() {
     }
 }
 
-// GAME LOOP
+
 function gameLoop() {
     if (KEY_EVENTS.leftArrow || KEY_EVENTS.a) {
         movePlayer(-GAME_CONFIG.characterSpeed, 0, -1);
@@ -198,6 +198,7 @@ function gameLoop() {
 
 
 function buyCharacter(button, name, number) {
+    let btns = document.querySelectorAll(".buy-Button");
     let state = button.dataset.state; //chatgpt suggestion: use dataset for state management
     let characterImg = document.querySelectorAll(".character-img");
 
@@ -216,11 +217,34 @@ function buyCharacter(button, name, number) {
         characterImg[number].style.filter = "grayscale(0%)";
         button.dataset.state = "unequip";
         button.innerHTML = "Unequip";
+        isCharacterEquipped = true;
 
     } else {
         characterImg[number].style.filter = "grayscale(100%)";
         button.dataset.state = "equip";
         button.innerHTML = "Equip";
+        isCharacterEquipped = false;
+    }
+
+    for (let i = 0; i < btns.length; i++) {
+        if (btns[i].dataset.state === "unequip" && btns[i] !== button) {
+            // force unequip previous one
+            btns[i].dataset.state = "equip";
+            btns[i].innerHTML = "Equip";
+
+            let img = document.querySelectorAll(".character-img")[i];
+            if (img) {
+                img.style.filter = "grayscale(100%)";
+            }
+        }
+    }
+
+    button.dataset.state = "unequip";
+    button.innerHTML = "Unequip";
+
+    let img = document.querySelectorAll(".character-img")[number];
+
+    if (img) {
+        img.style.filter = "grayscale(0%)";
     }
 }
-
