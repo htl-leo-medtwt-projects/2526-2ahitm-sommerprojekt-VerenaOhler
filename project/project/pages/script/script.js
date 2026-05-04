@@ -39,14 +39,15 @@ function win(){
 function loose(){
     loosePage.style.display = 'block'
 }
-//spritegame code
 
 let KEY_EVENTS = {
     leftArrow: false,
     rightArrow: false,
     upArrow: false,
     downArrow: false, 
-    space: false
+    space: false,
+    a: false,
+    d: false,
 }
 document.onkeydown = keyListenerDown;
 document.onkeyup = keyListenerUp;
@@ -65,9 +66,14 @@ function keyListenerDown(e) {
     if (e.key === "ArrowDown") { // Down arrow
         KEY_EVENTS.downArrow = true;
     }
-
     if (e.code === "Space") { 
         KEY_EVENTS.space = true;
+    }
+    if (e.key === "a") {
+        KEY_EVENTS.a = true;
+    }
+    if (e.key === "d") {
+        KEY_EVENTS.d = true;
     }
 }
 function keyListenerUp(e) {
@@ -85,6 +91,12 @@ function keyListenerUp(e) {
     }
     if (e.code === "Space") { 
         KEY_EVENTS.space = false;
+    }
+    if (e.key === "a") {
+        KEY_EVENTS.a = false;
+    }   
+    if (e.key === "d") {
+        KEY_EVENTS.d = false;
     }
 }
 
@@ -106,8 +118,8 @@ function movePlayer(x, y, direction) {
 }
 
 function startGame(){
-    playerX = 350;
-    playerY = 180;
+    playerX = 50;
+    playerY = 500;
 
     PLAYER.box.style.left = playerX + 'px';
     PLAYER.box.style.top = playerY + 'px';
@@ -128,12 +140,12 @@ function animatePlayer() {
 }
 
 function gameLoop() { 
-    if (KEY_EVENTS.leftArrow) { 
-        movePlayer(-GAME_CONFIG.characterSpeed, 0, -1); //--
-    }                                                       /*>-- movement for player left and right*/ 
-     if (KEY_EVENTS.rightArrow) 
-        { movePlayer(GAME_CONFIG.characterSpeed, 0, 1); //--
+    if (KEY_EVENTS.leftArrow || KEY_EVENTS.a) {
+        movePlayer(-GAME_CONFIG.characterSpeed, 0, -1);
     }
+    if (KEY_EVENTS.rightArrow || KEY_EVENTS.d) {
+        movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+        }
     velocityY += gravity; //declare gravity for player
     playerY += velocityY; 
     
