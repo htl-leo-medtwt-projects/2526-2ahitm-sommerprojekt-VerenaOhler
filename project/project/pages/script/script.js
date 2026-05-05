@@ -206,7 +206,7 @@ function gameLoop() {
 
 function buyCharacter(button, name, number) {
     let btns = document.querySelectorAll(".buy-Button");
-    let state = button.dataset.state; //chatgpt suggestion: use dataset for state management
+    let state = button.dataset.set; //chatgpt suggestion: use dataset for state management
     let characterImg = document.querySelectorAll(".character-img");
 
     if (Howler.ctx && Howler.ctx.state === "suspended") {
@@ -215,28 +215,29 @@ function buyCharacter(button, name, number) {
 
     if (state === "buy") {
         characterImg[number].style.filter = "grayscale(100%)";
-        button.dataset.state = "equip";
+        button.dataset.set = "equip";
         button.innerHTML = "Equip";
         //buySound.play(); 
         sfx.buy.play();
+        console.log("Bought " + name);
         // playSound(buySound);
     } else if (state === "equip") {
         characterImg[number].style.filter = "grayscale(0%)";
-        button.dataset.state = "unequip";
+        button.dataset.set = "unequip";
         button.innerHTML = "Unequip";
         isCharacterEquipped = true;
 
     } else {
         characterImg[number].style.filter = "grayscale(100%)";
-        button.dataset.state = "equip";
+        button.dataset.set = "equip";
         button.innerHTML = "Equip";
         isCharacterEquipped = false;
     }
 
     for (let i = 0; i < btns.length; i++) {
-        if (btns[i].dataset.state === "unequip" && btns[i] !== button) {
+        if (btns[i].dataset.set === "unequip" && btns[i] !== button) {
             // force unequip previous one
-            btns[i].dataset.state = "equip";
+            btns[i].dataset.set = "equip";
             btns[i].innerHTML = "Equip";
 
             let img = document.querySelectorAll(".character-img")[i];
@@ -246,7 +247,7 @@ function buyCharacter(button, name, number) {
         }
     }
 
-    button.dataset.state = "unequip";
+    button.dataset.set = "unequip";
     button.innerHTML = "Unequip";
 
     let img = document.querySelectorAll(".character-img")[number];

@@ -114,6 +114,7 @@ body {
   gap: 20px;
   padding: 20px;
   margin: 20px;
+  margin-left: 80px;
   height: 250px;
 }
 
@@ -125,7 +126,7 @@ body {
 }
 
 .shop-items img {
-  width: 75%;
+  width: 50%;
   object-fit: cover;
   position: relative;
   top: 5px;
@@ -136,15 +137,15 @@ body {
 
 .shop-items .buy-Button {
   background-color: #00FF37;
-  width: 200px;
-  height: 50px;
-  font-size: 2.5rem;
+  width: 120px;
+  height: 30px;
+  font-size: 1.5rem;
   font-family: button-font;
   color: #000;
   text-align: center;
   position: relative;
   top: 20px;
-  left: 100px;
+  left: 70px;
   cursor: pointer;
   opacity: 1;
 }
