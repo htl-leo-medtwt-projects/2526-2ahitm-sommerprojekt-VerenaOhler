@@ -389,9 +389,9 @@ body {
 }
 
 #playerBox{
-  width: 100px;
-  height: 100px;
-  background-color: #ff0000;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
   position: absolute;
   top: 100px; 
   left: 180px; 
@@ -402,4 +402,19 @@ body {
   height: 520px;
   width: 1130px;
   position: relative;
+}
+
+#spriteImg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 60px;
+}
+
+#level-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 540px;
+  width: 1150px;
 }

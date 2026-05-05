@@ -17,10 +17,18 @@ let playerY = 0;
 let canJump = true;
 let isCharacterEquipped = false;
 
-let buySound = new Howl({
-    src: ['./sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
-    volume: 0.5
-});
+// let buySound = new Howl({
+//     src: ['./sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
+//     volume: 0.5
+// });
+
+// let plattforms = [
+//     { x: 0, y: 540, width: 1150, height: 20 }, // ground
+//     { x: 200, y: 400, width: 100, height: 20 },
+//     { x: 400, y: 300, width: 100, height: 20 },
+//     { x: 600, y: 200, width: 100, height: 20 },
+//     { x: 800, y: 100, width: 100, height: 20 },
+// ];
 
 let sfx = {
     buy: new Howl({
@@ -35,9 +43,9 @@ let GAME_CONFIG = {
 };
 
 let velocityY = 0;
-let gravity = 0.5;
+let gravity = 0.7;
 let isOnGround = false;
-let groundLevel = 400;
+let groundLevel = 473;
 
 function viewTutorial() {
     if (previewContainer && tutorialContainer) {
@@ -135,15 +143,15 @@ function startGame() {
 function animatePlayer() {
     if (!PLAYER.spriteImg) return;
 
-    if (PLAYER.spriteImgNumber < 9) {
+    if (PLAYER.spriteImgNumber < 4) {
         PLAYER.spriteImgNumber++;
 
-        let x = parseFloat(PLAYER.spriteImg.style.right || "0");
-        if (isNaN(x)) x = 0;
+        let x = parseFloat(PLAYER.spriteImg.style.right);
+        //if (isNaN(x)) x = 0;
 
         x += 37;
         PLAYER.spriteImg.style.right = x + "px";
-    } else {
+    } else {    
         PLAYER.spriteImg.style.right = "0px";
         PLAYER.spriteImgNumber = 0;
     }
@@ -171,7 +179,7 @@ function gameLoop() {
     }
 
     if (KEY_EVENTS.space && isOnGround && canJump) {
-        velocityY = -10;
+        velocityY = -13;
         canJump = false;
     }
 
@@ -182,7 +190,6 @@ function gameLoop() {
     if (PLAYER.box) {
         PLAYER.box.style.top = playerY + 'px';
     }
-
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
 }
 
