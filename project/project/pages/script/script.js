@@ -248,3 +248,5 @@ function buyCharacter(button, name, number) {
         img.style.filter = "grayscale(0%)";
     }
 }
+
+startGame();
