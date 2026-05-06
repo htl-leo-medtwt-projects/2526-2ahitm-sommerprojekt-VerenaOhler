@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script> -->
+    <script src="./script/game.js" defer></script>
     <script src="./script/script.js" defer></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
                 </div>
                 <div id="tutorialPreview-buttonWrapper">
                     <div id="yesButton" onclick="viewTutorial()">YES!</div>
-                    <div id="noThanksButton" onclick="startGame()">No, thanks!</div>
+                    <a href="./gamescreen.html" id="noThanksButton">No, thanks!</a>
                 </div>
             </div>
         </div>
@@ -29,7 +30,7 @@
                 <div id="tutorial-explainationContainer">
                     <p>→ you can move around with either WASD or the Arrow keys</p>
                     <p>→With <strong>key F</strong> you can shoot the bubbles to catch ur enemies</p>
-                    <div id="tutorial-gotItButton"  onclick="startGame()" >Got it!</div>
+                    <a href="./gamescreen.html" id="tutorial-gotItButton" >Got it!</a>
                 </div>
                 
             </div>
