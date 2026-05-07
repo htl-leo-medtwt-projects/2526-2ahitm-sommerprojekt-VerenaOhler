@@ -86,10 +86,18 @@ function movePlayer(x, y, direction) {
   playerX += x;
   playerY += y;
 
+  if (playerX < 71){ 
+    playerX = 71; 
+  }
+  if (playerX > 1036) {
+    playerX = 1036;
+  }
+
   if (PLAYER.box) {
     PLAYER.box.style.left = playerX + "px";
     PLAYER.box.style.top = playerY + "px";
   }
+
 
   if (direction !== 0 && PLAYER.spriteImg) {
     if (direction !== PLAYER.spriteDirection) {
@@ -107,7 +115,7 @@ function startGame() {
     return;
   }
 
-  playerX = 50;
+  playerX = 71;
   playerY = 500;
 
   PLAYER.box.style.left = playerX + "px";
