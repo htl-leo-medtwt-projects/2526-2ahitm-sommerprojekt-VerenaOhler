@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script> -->
     <script src="./script/game.js" defer></script>
+    <script src="./script/detectCollision.js"></script>
     <script src="./script/script.js" defer></script>
 
 </head>
 <body>
-    <img src="./img/level_1.png" alt="level 1" id="level-bg">
+    <div id="game">
+        <img src="./img/level_1.png" alt="level 1" id="level-bg">
         <div id="temp-winLoose">
             <div class="btn" id="winbtn" onclick="win()"></div>
             <div class="btn" id="loosebtn" onclick="loose()"></div>
         </div>
+        
+        <div id="platformContainer">
 
+        </div>
         <div id="playerBox">
-                <img src="./img/Screenshot 2026-05-05 103503.png" alt="" id="spriteImg">
-            </div>
-
+            <img src="./img/Screenshot 2026-05-05 103503.png" alt="" id="spriteImg">
+        </div>
+    
+    </div>
         <div id="win-container">
             <p>Level Up!</p>
             <img src="./img/pixil-frame-0 (4).png" alt="Winners Icon">

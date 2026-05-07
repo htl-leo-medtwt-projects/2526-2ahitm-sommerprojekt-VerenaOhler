@@ -1,6 +1,8 @@
 let previewContainer = document.getElementById("tutorialPreview-container");
 let tutorialContainer = document.getElementById("tutorial-explainationContainer");
 
+let isCharacterEquipped = false;
+
 // let buySound = new Howl({
 //     src: ['./sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
 //     volume: 0.5
@@ -50,9 +52,9 @@ function buyCharacter(button, name, number) {
     let state = button.dataset.set; //chatgpt suggestion: use dataset for state management
     let characterImg = document.querySelectorAll(".character-img");
 
-    if (Howler.ctx && Howler.ctx.state === "suspended") {
-        Howler.ctx.resume();
-    }  
+    // if (Howler.ctx && Howler.ctx.state === "suspended") {
+    //     Howler.ctx.resume();
+    // }  
 
     if (state === "buy") {
         characterImg[number].style.filter = "grayscale(100%)";
