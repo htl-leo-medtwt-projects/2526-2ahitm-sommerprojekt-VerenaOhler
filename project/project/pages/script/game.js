@@ -37,7 +37,7 @@ const platforms = {
 };
 
 let GAME_CONFIG = {
-  gameSpeed: 24,
+  gameSpeed: 20,
   characterSpeed: 5,
 };
 
@@ -129,15 +129,10 @@ function startGame() {
 }
 
 function animatePlayer() {
-  if (!PLAYER.spriteImg) return;
-
-  if (PLAYER.spriteImgNumber < 4) {
+  if (PLAYER.spriteImgNumber < 3) {
     PLAYER.spriteImgNumber++;
-
-    let x = parseFloat(PLAYER.spriteImg.style.right);
-    //if (isNaN(x)) x = 0;
-
-    x += 37;
+    let x = parseFloat(PLAYER.spriteImg.style.right);;
+    x -= 62;
     PLAYER.spriteImg.style.right = x + "px";
   } else {
     PLAYER.spriteImg.style.right = "0px";
@@ -171,10 +166,12 @@ function gameLoop() {
 
   if (KEY_EVENTS.leftArrow || KEY_EVENTS.a) {
     movePlayer(-GAME_CONFIG.characterSpeed, 0, -1);
+    animatePlayer();
   }
 
   if (KEY_EVENTS.rightArrow || KEY_EVENTS.d) {
     movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+    animatePlayer();
   }
 
 
