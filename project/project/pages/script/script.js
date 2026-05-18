@@ -1,7 +1,63 @@
 let previewContainer = document.getElementById("tutorialPreview-container");
-let tutorialContainer = document.getElementById("tutorial-explainationContainer");
+let tutorialContainer = document.getElementById(
+  "tutorial-explainationContainer",
+);
 
 let isCharacterEquipped = false;
+let coinCountElement = document.querySelector(".coin-count");
+coinCountElement.textContent = PLAYER.coins;
+
+let characters = [
+    {
+      "id": 1,
+      "name": "Bub",
+      "img" : "../img/Bub.png",
+      "spriteImg" : "../img/Bub_sprite.png",
+      "color": "green",
+      "bubble": "../img/Bub_bubble.png"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "img" : "../img/Bob.png",
+      "spriteImg" : "../img/Bob_sprite.png",
+      "color": "blue",
+      "bubble": "../img/Bob_bubble.png"
+    },
+    {
+      "id": 3,
+      "name": "Luna",
+      "img" : "../img/pixil-frame-0.png",
+      "spriteImg" : "../img/Luna_sprite.png",
+      "color": "purple",
+      "bubble": "../img/Luna_bubble.png"
+    },
+    {
+      "id": 4,
+      "name": "Pyro",
+      "img" : "../img/Pyro.png",
+      "spriteImg" : "../img/Pyro_sprite.png",
+      "color": "red",
+      "bubble": "../img/Pyro_bubble.png"
+    },
+    {
+      "id": 5,
+      "name": "Glacia",
+      "img" : "../img/Glacia.png",
+      "spriteImg" : "../img/Glacia_sprite.png",
+      "color": "cyan",
+      "bubble": "../img/Glacia_bubble.png"
+    },
+    {
+      "id": 6,
+      "name": "Shadow",
+      "img" : "../img/Shadow.png",
+      "spriteImg" : "../img/Shadow_sprite.png",
+      "color": "black",
+      "bubble": "../img/Shadow_bubble.png"
+    }
+  ]
+
 
 // let buySound = new Howl({
 //     src: ['./sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
@@ -17,86 +73,96 @@ let isCharacterEquipped = false;
 // ];
 
 let sfx = {
-    buy: new Howl({
-        src: ['sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
-        volume: 0.5
-    }),
-}
-
+  buy: new Howl({
+    src: ["sounds/mixkit-winning-a-coin-video-game-2069.wav"], 
+    volume: 0.5,
+  }),
+  error: new Howl({
+    src: ["sounds/freesound_community-error-89206.mp3"], 
+    volume: 0.5,
+  }),
+  equip: new Howl({
+    src: ["sounds/Cartoon SFX Equip.mp3"], 
+    volume: 0.5,
+  }),
+};
 
 function viewTutorial() {
-    if (previewContainer && tutorialContainer) {
-        previewContainer.style.display = "none";
-        tutorialContainer.style.display = "block";
-    }
+  if (previewContainer && tutorialContainer) {
+    previewContainer.style.display = "none";
+    tutorialContainer.style.display = "block";
+  }
 }
 
 function closeSettings() {
-    window.location.href = "../index.html";
+  window.location.href = "../index.html";
 }
 
-
-function playSound(sound) {
-    if (Howler.ctx && Howler.ctx.state === "suspended") {
-        Howler.ctx.resume().then(() => {
-            sound.play();
-        });
+function buyCharacter(button, name, number, cost) {
+  let btns = document.querySelectorAll(".buy-Button");
+  let state = button.dataset.set; //chatgpt suggestion: use dataset for state management
+  let characterImg = document.querySelectorAll(".character-img");
+  let chosenCharacter = "";
+  
+   // get character data from JSON
+  if (state === "buy") {
+    if (PLAYER.coins < cost) {
+      // play error sound
+      sfx.error.play();
+      console.log("Not enough coins to buy " + name);
+      return;
     } else {
-        sound.play();
+      PLAYER.coins -= cost;
+      coinCountElement.textContent = PLAYER.coins;
+      
+      characterImg[number].style.filter = "grayscale(100%)";
+      button.dataset.set = "equip";
+      button.innerHTML = "Equip";
+      sfx.buy.play();
+      console.log("Bought " + name);
     }
-}
-
-
-function buyCharacter(button, name, number) {
-    let btns = document.querySelectorAll(".buy-Button");
-    let state = button.dataset.set; //chatgpt suggestion: use dataset for state management
-    let characterImg = document.querySelectorAll(".character-img");
-
-    // if (Howler.ctx && Howler.ctx.state === "suspended") {
-    //     Howler.ctx.resume();
-    // }  
-
-    if (state === "buy") {
-        characterImg[number].style.filter = "grayscale(100%)";
-        button.dataset.set = "equip";
-        button.innerHTML = "Equip";
-        //buySound.play(); 
-        sfx.buy.play();
-        console.log("Bought " + name);
-        // playSound(buySound);
-    } else if (state === "equip") {
-        characterImg[number].style.filter = "grayscale(0%)";
-        button.dataset.set = "unequip";
-        button.innerHTML = "Unequip";
-        isCharacterEquipped = true;
-
-    } else {
-        characterImg[number].style.filter = "grayscale(100%)";
-        button.dataset.set = "equip";
-        button.innerHTML = "Equip";
-        isCharacterEquipped = false;
-    }
-
-    for (let i = 0; i < btns.length; i++) {
-        if (btns[i].dataset.set === "unequip" && btns[i] !== button) {
-            // force unequip previous one
-            btns[i].dataset.set = "equip";
-            btns[i].innerHTML = "Equip";
-
-            let img = document.querySelectorAll(".character-img")[i];
-            if (img) {
-                img.style.filter = "grayscale(100%)";
-            }
+  } else if (state === "equip") {
+    for (let i = 0; i < characters.length; i++) {
+        if (characters[i].name === name) {
+            PLAYER.spriteImg = characters[i].spriteImg;
+            console.log("Equipped " + name);
+            console.log("Player sprite image set to: " + PLAYER.spriteImg);
+            sfx.equip.play();
+            localStorage.setItem("equippedCharacter", PLAYER.spriteImg);
+            break;
         }
     }
-
+    characterImg[number].style.filter = "grayscale(0%)";
     button.dataset.set = "unequip";
     button.innerHTML = "Unequip";
+    isCharacterEquipped = true;
+  } else {
+    characterImg[number].style.filter = "grayscale(100%)";
+    button.dataset.set = "equip";
+    button.innerHTML = "Equip";
+    isCharacterEquipped = false;
+  }
 
-    let img = document.querySelectorAll(".character-img")[number];
+  for (let i = 0; i < btns.length; i++) {
+    if (btns[i].dataset.set === "unequip" && btns[i] !== button) {
+      // force unequip previous one
+      btns[i].dataset.set = "equip";
+      btns[i].innerHTML = "Equip";
 
-    if (img) {
-        img.style.filter = "grayscale(0%)";
+      let img = document.querySelectorAll(".character-img")[i];
+      if (img) {
+        img.style.filter = "grayscale(100%)";
+      }
     }
-}
+  }
 
+  button.dataset.set = "unequip";
+  button.innerHTML = "Unequip";
+
+  let img = document.querySelectorAll(".character-img")[number];
+
+  if (img) {
+    img.style.filter = "grayscale(0%)";
+  }
+
+}

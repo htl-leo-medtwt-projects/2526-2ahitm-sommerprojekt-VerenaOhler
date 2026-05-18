@@ -4,11 +4,13 @@ let PLAYER = {
   spriteImgNumber: 0,
   spriteDirection: 1,
   pointCount: 0,
+  coins:  40,
 };
 
 let winPage = document.getElementById("winbtn");
 let loosePage = document.getElementById("loosebtn");
 let platformContainer = document.getElementById("platformContainer");
+let playersrc = document.getElementById("spriteImg").src;
 
 let playerX = 0;
 let playerY = 0;
@@ -114,7 +116,10 @@ function startGame() {
     console.error("playerBox not found in HTML");
     return;
   }
-
+  let characterImg = localStorage.getItem("equippedCharacter");
+  if (characterImg) {
+    playersrc = characterImg;
+  }
   playerX = 71;
   playerY = 500;
 

@@ -7,10 +7,16 @@
     <title>Cosmetic shop</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
+    <script src="./script/game.js"></script>
     <script src="./script/script.js" defer></script>
 </head> 
 
 <body>
+
+    <div class="coin-showcase">
+        <img src="./img/Coin.png" alt="Coin image">
+        <p class="coin-count"></p>
+    </div>
     <div id="shop-header">COSMETIC - SHOP</div>
     <div id="shop-closeButton">
         <span onclick="closeSettings()" id="shop-closeButtonText">X</span>
@@ -18,39 +24,39 @@
     <div id="shop-container">
         <div id="shop-wrapper">
             <div class="shop-items">
-                <img src="./img/Bob.png" alt="character" class="character-img">
-                <div class="coin"><img src="./img/Coin.png" alt="Coin image"></div>
-                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bub', 0)">
+                <img src="./img/Bub.png" alt="character" class="character-img">
+                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>10</p></div>
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bub', 0, 10)">
                     Buy
                 </div>
             </div>
             <div class="shop-items">
-                <img src="./img/Bub.png" alt="character" class="character-img">
-                <div class="coin"><img src="./img/Coin.png" alt="Coin image"></div>
-                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bob', 1)">
+                <img src="./img/Bob.png" alt="character" class="character-img">
+                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>30</p></div>
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Bob', 1, 30)">
                     Buy
                 </div>
             </div>
             <div class="shop-items">
                 <img src="./img/Pyro.png" alt="character" class="character-img">
-                <div class="coin"><img src="./img/Coin.png" alt="Coin image"></div>
-                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Pyro', 2)">
+                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>50</p></div>
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Pyro', 2, 50)">
                     Buy
                 </div>
             </div>
 
             <div class="shop-items">
                 <img src="./img/Glacia.png" alt="character" class="character-img">
-                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>10</p></div>
-                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Glacia', 3)">
+                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>100</p></div>
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Glacia', 3, 100)">
                     Buy
                 </div>
             </div>
 
             <div class="shop-items">
                 <img src="./img/Shadow.png" alt="character" class="character-img">
-                <div class="coin"><img src="./img/Coin.png" alt="Coin image"></div>
-                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Shadow', 4)">
+                <div class="coin"><img src="./img/Coin.png" alt="Coin image"><p>150</p></div>
+                <div class="buy-Button" data-set="buy" onclick="buyCharacter(this, 'Shadow', 4, 150)">
                     Buy
                 </div>
             </div>
