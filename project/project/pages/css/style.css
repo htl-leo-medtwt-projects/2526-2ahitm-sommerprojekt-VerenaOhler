@@ -135,6 +135,13 @@ body {
   filter: grayscale(0%);
 }
 
+.character-img p {
+  color: #000;
+  font-family: button-font;
+  font-size: 2.5rem;
+  margin-top: 80px;
+}
+
 .shop-items .buy-Button {
   background-color: #00FF37;
   width: 120px;
@@ -150,6 +157,21 @@ body {
   opacity: 1;
 }
 
+.coin {
+  position: absolute;
+  width: 80px;  
+  margin-left: -10px;
+  margin-top: 10px;
+}
+
+.coin p {
+  position: absolute;
+  left: 50px;
+  top: -20px;
+  font-size: 2rem;
+  font-family: button-font;
+  color: #000;
+}
 /*******************/
 /* TUTORIAL PAGE */ 
 /*******************/

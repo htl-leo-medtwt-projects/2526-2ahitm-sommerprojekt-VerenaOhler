@@ -37,8 +37,8 @@ const platforms = {
 };
 
 let GAME_CONFIG = {
-  gameSpeed: 20,
-  characterSpeed: 5,
+  gameSpeed: 17,
+  characterSpeed: 7,
 };
 
 let velocityY = 0;
@@ -132,7 +132,7 @@ function animatePlayer() {
   if (PLAYER.spriteImgNumber < 3) {
     PLAYER.spriteImgNumber++;
     let x = parseFloat(PLAYER.spriteImg.style.right);;
-    x -= 62;
+    x -= 75;
     PLAYER.spriteImg.style.right = x + "px";
   } else {
     PLAYER.spriteImg.style.right = "0px";

@@ -16,12 +16,12 @@ let isCharacterEquipped = false;
 //     { x: 800, y: 100, width: 100, height: 20 },
 // ];
 
-// let sfx = {
-//     buy: new Howl({
-//         src: ['sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
-//         volume: 0.5
-//     }),
-// }
+let sfx = {
+    buy: new Howl({
+        src: ['sounds/mixkit-winning-a-coin-video-game-2069.wav'], // fixed path (safer)
+        volume: 0.5
+    }),
+}
 
 
 function viewTutorial() {
@@ -36,15 +36,15 @@ function closeSettings() {
 }
 
 
-// function playSound(sound) {
-//     if (Howler.ctx && Howler.ctx.state === "suspended") {
-//         Howler.ctx.resume().then(() => {
-//             sound.play();
-//         });
-//     } else {
-//         sound.play();
-//     }
-// }
+function playSound(sound) {
+    if (Howler.ctx && Howler.ctx.state === "suspended") {
+        Howler.ctx.resume().then(() => {
+            sound.play();
+        });
+    } else {
+        sound.play();
+    }
+}
 
 
 function buyCharacter(button, name, number) {
@@ -61,7 +61,7 @@ function buyCharacter(button, name, number) {
         button.dataset.set = "equip";
         button.innerHTML = "Equip";
         //buySound.play(); 
-        //sfx.buy.play();
+        sfx.buy.play();
         console.log("Bought " + name);
         // playSound(buySound);
     } else if (state === "equip") {
