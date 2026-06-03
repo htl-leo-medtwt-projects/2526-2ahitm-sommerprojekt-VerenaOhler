@@ -5,7 +5,8 @@ let tutorialContainer = document.getElementById(
 
 let isCharacterEquipped = false;
 let coinCountElement = document.querySelector(".coin-count");
-coinCountElement.textContent = PLAYER.coins;
+
+//coinCountElement.innerHTML = PLAYER.coins;
 
 let characters = [
     {
@@ -72,21 +73,47 @@ let characters = [
 //     { x: 800, y: 100, width: 100, height: 20 },
 // ];
 
-let sfx = {
-  buy: new Howl({
-    src: ["sounds/mixkit-winning-a-coin-video-game-2069.wav"], 
-    volume: 0.5,
-  }),
-  error: new Howl({
-    src: ["sounds/freesound_community-error-89206.mp3"], 
-    volume: 0.5,
-  }),
-  equip: new Howl({
-    src: ["sounds/Cartoon SFX Equip.mp3"], 
-    volume: 0.5,
-  }),
-};
+// let sfx = {
+//   buy: new Howl({
+//     src: ["sounds/mixkit-winning-a-coin-video-game-2069.wav"], 
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+//   error: new Howl({
+//     src: ["sounds/freesound_community-error-89206.mp3"], 
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+//   equip: new Howl({
+//     src: ["sounds/Cartoon SFX Equip.mp3"], 
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+//   game: new Howl({
+//     src: ["sounds/Bubble Bobble (Arcade) - In-Game Music.mp3"],
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+//   game_over: new Howl({
+//     src: ["sounds/Bubble Bobble (Arcade OST) - 14 - Game Over.mp3"],
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+//   time_out: new Howl({
+//     src: ["../sounds/Bubble Bobble (Arcade OST) - 12 - Death Skulls Appear.mp3"],
+//     volume: 0.5,
+//     pool: 25,
+//   }),
+// };
 
+const sfx = {
+  buy: new Audio("../sounds/buy.wav"),
+  //error: new Audio("../sounds/error.mp3"),
+  equip: new Audio("../sounds/equip.mp3"),
+  game: new Audio("../sounds/game_music.mp3"),
+  game_over: new Audio("../sounds/GameOver.mp3"),
+  time_out: new Audio("../sounds/timeUp.mp3"),
+};
 function viewTutorial() {
   if (previewContainer && tutorialContainer) {
     previewContainer.style.display = "none";
@@ -108,7 +135,8 @@ function buyCharacter(button, name, number, cost) {
   if (state === "buy") {
     if (PLAYER.coins < cost) {
       // play error sound
-      sfx.error.play();
+      // sfx.error.play();
+      playSfx('error');
       console.log("Not enough coins to buy " + name);
       return;
     } else {
@@ -118,7 +146,8 @@ function buyCharacter(button, name, number, cost) {
       characterImg[number].style.filter = "grayscale(100%)";
       button.dataset.set = "equip";
       button.innerHTML = "Equip";
-      sfx.buy.play();
+      // sfx.buy.play();
+      playSfx('buy')
       console.log("Bought " + name);
     }
   } else if (state === "equip") {
@@ -127,7 +156,8 @@ function buyCharacter(button, name, number, cost) {
             PLAYER.spriteImg = characters[i].spriteImg;
             console.log("Equipped " + name);
             console.log("Player sprite image set to: " + PLAYER.spriteImg);
-            sfx.equip.play();
+            // sfx.equip.play();
+            playSfx('equip')
             localStorage.setItem("equippedCharacter", PLAYER.spriteImg);
             break;
         }

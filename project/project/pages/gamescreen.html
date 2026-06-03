@@ -6,9 +6,10 @@
     <title>Gamescreen</title>
     <link rel="stylesheet" href="./css/style.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script> -->
+    <script src="./script/script.js" defer></script>
     <script src="./script/game.js" defer></script>
     <script src="./script/detectCollision.js" defer></script>
-    <script src="./script/script.js" defer></script>
+    
 
 </head>
 <body>
@@ -18,12 +19,26 @@
             <div class="btn" id="winbtn" onclick="win()"></div>
             <div class="btn" id="loosebtn" onclick="loose()"></div>
         </div>
+
         
-        <div id="platformContainer"></div>
+            <p id="points">0</p>
         
-        <div id="playerBox">
-            <img src="./img/Luna_sprite.png" alt="" id="spriteImg">
+
+        <div id="life-cont">
+                <img src="./img/pixil-frame-0 (6).png" alt="bubble" class="life">
+                <img src="./img/pixil-frame-0 (6).png" alt="bubble" class="life">
+                <img src="./img/pixil-frame-0 (6).png" alt="bubble" class="life">
+            </div>
+        
+        <div class="platformContainer"></div>
+        
+        <div id="playerBubbleCont">
+            <div class="playerBox">
+                <img src="./img/Luna_sprite.png" alt="" id="spriteImg">
+            </div>
         </div>
+           
+
     
     </div>
         <div id="win-container">

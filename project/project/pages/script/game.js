@@ -10,7 +10,9 @@ let PLAYER = {
 let winPage = document.getElementById("winbtn");
 let loosePage = document.getElementById("loosebtn");
 let platformContainer = document.getElementById("platformContainer");
-let playersrc = document.getElementById("spriteImg").src;
+// let playersrc = document.getElementById("spriteImg").src;
+let playerBubbleCont = document.getElementById("playerBubbleCont");
+let gameScreen = document.getElementById("game");
 
 let playerX = 0;
 let playerY = 0;
@@ -46,7 +48,8 @@ let GAME_CONFIG = {
 let velocityY = 0;
 let gravity = 0.7;
 let isOnGround = false;
-let groundLevel = 473;
+ let groundLevel = 473;
+//let groundLevel = 0;
 
 let KEY_EVENTS = {
   leftArrow: false,
@@ -99,6 +102,10 @@ function movePlayer(x, y, direction) {
     PLAYER.box.style.left = playerX + "px";
     PLAYER.box.style.top = playerY + "px";
   }
+  if(playerBubbleCont){
+    playerBubbleCont.style.left = playerX + "px";
+    playerBubbleCont.style.top = playerY + "px";
+  }
 
 
   if (direction !== 0 && PLAYER.spriteImg) {
@@ -120,16 +127,16 @@ function startGame() {
   if (characterImg) {
     playersrc = characterImg;
   }
-  playerX = 71;
-  playerY = 500;
 
-  PLAYER.box.style.left = playerX + "px";
-  PLAYER.box.style.top = playerY + "px";
+  PLAYER.box.style.left = 10 + "px";
+  PLAYER.box.style.top = 40 + "px";
 
-  if (PLAYER.spriteImg) {
-    PLAYER.spriteImg.style.right = "0px";
-  }
+  playerBubbleCont.style.left = 69 + "px";
+  playerBubbleCont.style.top = 435 + "px";
 
+  sfx.game.play();
+  sfx.game.loop = true;
+  
   gameLoop();
 }
 
@@ -167,11 +174,21 @@ function loadPlatforms(level) {
   platformContainer.innerHTML = html;
 }
 
+//Howler.mute(true);
+
 function gameLoop() {
+  
+  // sfx.game.loop(true);
+  // console.log(sfx.game)
+  
+  // sfx.game.play();
+  let f_key_counter = 0;
+  let pointsElement = document.getElementById("points");
 
   if (KEY_EVENTS.leftArrow || KEY_EVENTS.a) {
     movePlayer(-GAME_CONFIG.characterSpeed, 0, -1);
     animatePlayer();
+
   }
 
   if (KEY_EVENTS.rightArrow || KEY_EVENTS.d) {
@@ -179,6 +196,28 @@ function gameLoop() {
     animatePlayer();
   }
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "f" && !e.repeat) {
+    PLAYER.pointCount += 10;
+    pointsElement.innerHTML = PLAYER.pointCount;
+
+    const bubble = document.createElement("img");
+    bubble.src = "./img/pixil-frame-0 (6).png";
+    bubble.className = "bubble";
+
+    bubble.style.left = playerX + "px";
+    bubble.style.top = playerY + "px";
+
+    playerBubbleCont.style.left = playerX + "px";
+    playerBubbleCont.style.top = playerY + "px";
+
+    playerBubbleCont.appendChild(bubble);
+
+    bubble.addEventListener("animationend", () => {
+      bubble.remove();
+    });
+  }
+});
 
   isOnPlatform = false;
 
@@ -228,9 +267,9 @@ function gameLoop() {
     canJump = true;
   }
 
-  if (PLAYER.box) {
-    PLAYER.box.style.top = playerY + "px";
-  }
+  // if (PLAYER.box) {
+  //   PLAYER.box.style.top = playerY + "px";
+  // }
 
   setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
 }
