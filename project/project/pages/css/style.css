@@ -519,3 +519,8 @@ body {
   left: 71px;
   top: 400px;
 }
+
+.pickup {
+  position: absolute;
+  pointer-events: none;
+}

@@ -45,15 +45,15 @@ document.addEventListener("keydown", function (e) {
 
 const platforms = {
   level_1: [
-    { x: 70, y: 420, width: 80, height: 5 },
-    { x: 70, y: 310, width: 80, height: 5 },
-    { x: 70, y: 199, width: 80, height: 5 },
-    { x: 249, y: 420, width: 674, height: 5 },
-    { x: 243, y: 310, width: 680, height: 5 },
-    { x: 243, y: 199, width: 680, height: 5 },
-    { x: 1015, y: 420, width: 80, height: 5 },
-    { x: 1015, y: 310, width: 80, height: 5 },
-    { x: 1015, y: 199, width: 80, height: 5 },
+    { x: 70, y: 420, width: 80, height: 20 },
+    { x: 70, y: 310, width: 80, height: 20 },
+    { x: 70, y: 199, width: 80, height: 20 },
+    { x: 249, y: 420, width: 674, height: 20 },
+    { x: 243, y: 310, width: 680, height: 20 },
+    { x: 243, y: 199, width: 680, height: 20},
+    { x: 1015, y: 420, width: 80, height: 20 },
+    { x: 1015, y: 310, width: 80, height: 20 },
+    { x: 1015, y: 199, width: 80, height: 20 },
   ],
   level_2: [
     { x: 150, y: 450, width: 120, height: 20 },
@@ -62,6 +62,16 @@ const platforms = {
     { x: 750, y: 150, width: 110, height: 20 },
   ],
 };
+
+const pickups = [
+  { x: 120, y: 380, img: "./img/Banana.png", points: 10 },
+  { x: 300, y: 270, img: "./img/Strawberry.png", points: 20 },
+  { x: 500, y: 160, img: "./img/Banana.png", points: 10 },
+  { x: 800, y: 380, img: "./img/Strawberry.png", points: 20 }
+];
+
+let pickupContainer = document.getElementById("pickupContainer");
+
 
 let GAME_CONFIG = {
   gameSpeed: 17,
@@ -142,8 +152,31 @@ function movePlayer(x, y, direction) {
   }
 }
 
+function checkPickups() {
+  document.querySelectorAll(".pickup").forEach((pickup) => {
+    const pickupRect = pickup.getBoundingClientRect();
+    const playerRect = PLAYER.box.getBoundingClientRect();
+
+    if (
+      playerRect.left < pickupRect.right &&
+      playerRect.right > pickupRect.left &&
+      playerRect.top < pickupRect.bottom &&
+      playerRect.bottom > pickupRect.top
+    ) {
+      const index = pickup.dataset.index;
+      const item = pickups[index];
+
+      PLAYER.pointCount += item.points;
+      document.getElementById("points").innerHTML = PLAYER.pointCount;
+
+      pickup.remove();
+    }
+  });
+}
+
 function startGame() {
   loadPlatforms("level_1");
+  loadPickups();
   if (!PLAYER.box) {
     console.error("playerBox not found in HTML");
     return;
@@ -166,6 +199,31 @@ function startGame() {
   // sfx.game.loop = true;
   
   gameLoop();
+}
+function loadPickups() {
+  let html = "";
+
+  for (let i = 0; i < pickups.length; i++) {
+    let item = pickups[i];
+
+    html += `
+      <div
+        class="pickup"
+        data-index="${i}"
+        style="
+          position:absolute;
+          left:${item.x}px;
+          top:${item.y}px;
+          width:32px;
+          height:32px;
+        "
+      >
+        <img src="${item.img}" width="32" height="32">
+      </div>
+    `;
+  }
+
+  pickupContainer.innerHTML = html;
 }
 
 function animatePlayer() {
@@ -252,7 +310,7 @@ function gameLoop() {
   if (velocityY >= 0 && previousBottom <= p.y && playerBottom >= p.y && PLAYER.box.offsetLeft + PLAYER.box.clientWidth > p.x && PLAYER.box.offsetLeft < p.x + p.width) {
     playerY = p.y - PLAYER.box.clientHeight;
     PLAYER.box.style.top = playerLimit + "px";
-    playerBubbleCont.style.top = playerY + "px";
+    playerBubbleCont.style.top = playerY - 40 + "px";
     velocityY = 0;
     isOnGround = true;
     isOnPlatform = true;
@@ -260,7 +318,6 @@ function gameLoop() {
     break;
   }
 }
-
 
   if (KEY_EVENTS.space && isOnGround && canJump) {
     velocityY = -13;
@@ -275,6 +332,8 @@ function gameLoop() {
   // if (PLAYER.box) {
   //   PLAYER.box.style.top = playerY + "px";
   // }
+
+  checkPickups();
 
   setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed);
 }
