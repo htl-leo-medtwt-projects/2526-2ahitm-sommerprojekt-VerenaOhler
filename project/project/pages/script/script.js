@@ -106,14 +106,14 @@ let characters = [
 //   }),
 // };
 
-const sfx = {
-  buy: new Audio("../sounds/buy.wav"),
-  //error: new Audio("../sounds/error.mp3"),
-  equip: new Audio("../sounds/equip.mp3"),
-  game: new Audio("../sounds/game_music.mp3"),
-  game_over: new Audio("../sounds/GameOver.mp3"),
-  time_out: new Audio("../sounds/timeUp.mp3"),
-};
+// const sfx = {
+//   buy: new Audio("../sounds/buy.wav"),
+//error: new Audio("../sounds/error.mp3"),
+//   equip: new Audio("../sounds/equip.mp3"),
+//   game: new Audio("../sounds/game_music.mp3"),
+//   game_over: new Audio("../sounds/GameOver.mp3"),
+//   time_out: new Audio("../sounds/timeUp.mp3"),
+// };
 function viewTutorial() {
   if (previewContainer && tutorialContainer) {
     previewContainer.style.display = "none";

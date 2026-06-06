@@ -465,8 +465,8 @@ body {
 }
 
 .platform {
-    position: absolute;
-    background-color: rgb(68, 221, 183);
+  position: absolute;
+  background-color: rgb(0, 255, 191);
 }
 
 #life-cont {

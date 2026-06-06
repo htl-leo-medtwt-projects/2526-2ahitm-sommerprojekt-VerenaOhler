@@ -9,13 +9,14 @@ let PLAYER = {
 
 let winPage = document.getElementById("winbtn");
 let loosePage = document.getElementById("loosebtn");
-let platformContainer = document.getElementById("platformContainer");
+let platformContainer = document.getElementsByClassName("platformContainer"[0]);
 // let playersrc = document.getElementById("spriteImg").src;
 let playerBubbleCont = document.getElementById("playerBubbleCont");
 let gameScreen = document.getElementById("game");
 
 let playerX = 0;
 let playerY = 0;
+let playerLimit = 40;
 let canJump = true;
 let isOnPlatform = false;
 let wasOnPlatform = false;
@@ -48,7 +49,7 @@ let GAME_CONFIG = {
 let velocityY = 0;
 let gravity = 0.7;
 let isOnGround = false;
- let groundLevel = 473;
+let groundLevel = 435;
 //let groundLevel = 0;
 
 let KEY_EVENTS = {
@@ -91,16 +92,18 @@ function movePlayer(x, y, direction) {
   playerX += x;
   playerY += y;
 
-  if (playerX < 71){ 
-    playerX = 71; 
-  }
+
   if (playerX > 1036) {
     playerX = 1036;
+  }
+  if(playerX < 71){
+    playerBubbleCont.style.left = 71 + "px"
+    PLAYER.box.style.left = 10 + "px";
   }
 
   if (PLAYER.box) {
     PLAYER.box.style.left = playerX + "px";
-    PLAYER.box.style.top = playerY + "px";
+    PLAYER.box.style.top = 40 + "px";
   }
   if(playerBubbleCont){
     playerBubbleCont.style.left = playerX + "px";
@@ -134,8 +137,8 @@ function startGame() {
   playerBubbleCont.style.left = 69 + "px";
   playerBubbleCont.style.top = 435 + "px";
 
-  sfx.game.play();
-  sfx.game.loop = true;
+  // sfx.game.play();
+  // sfx.game.loop = true;
   
   gameLoop();
 }
@@ -181,6 +184,7 @@ function gameLoop() {
   // sfx.game.loop(true);
   // console.log(sfx.game)
   
+
   // sfx.game.play();
   let f_key_counter = 0;
   let pointsElement = document.getElementById("points");
