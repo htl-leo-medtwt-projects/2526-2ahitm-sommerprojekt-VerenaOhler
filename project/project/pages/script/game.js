@@ -9,7 +9,7 @@ let PLAYER = {
 
 let winPage = document.getElementById("winbtn");
 let loosePage = document.getElementById("loosebtn");
-let platformContainer = document.getElementsByClassName("platformContainer"[0]);
+let platformContainer = document.getElementsByClassName("platformContainer")[0];
 // let playersrc = document.getElementById("spriteImg").src;
 let playerBubbleCont = document.getElementById("playerBubbleCont");
 let gameScreen = document.getElementById("game");
@@ -20,6 +20,28 @@ let playerLimit = 40;
 let canJump = true;
 let isOnPlatform = false;
 let wasOnPlatform = false;
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "f" && !e.repeat) {
+    let pointsElement = document.getElementById("points");
+
+    PLAYER.pointCount += 10;
+    pointsElement.innerHTML = PLAYER.pointCount;
+
+    const bubble = document.createElement("img");
+    bubble.src = "./img/pixil-frame-0 (6).png";
+    bubble.className = "bubble";
+
+    bubble.style.left = playerX + "px";
+    bubble.style.top = playerLimit + "px";
+
+    playerBubbleCont.appendChild(bubble);
+
+    bubble.addEventListener("animationend", () => {
+      bubble.remove();
+    });
+  }
+});
 
 const platforms = {
   level_1: [
@@ -50,7 +72,7 @@ let velocityY = 0;
 let gravity = 0.7;
 let isOnGround = false;
 let groundLevel = 435;
-//let groundLevel = 0;
+//let groundLevel = 435;
 
 let KEY_EVENTS = {
   leftArrow: false,
@@ -96,20 +118,20 @@ function movePlayer(x, y, direction) {
   if (playerX > 1036) {
     playerX = 1036;
   }
-  if(playerX < 71){
-    playerBubbleCont.style.left = 71 + "px"
-    PLAYER.box.style.left = 10 + "px";
+
+  if (playerX < 71) {
+    playerX = 71;
   }
 
   if (PLAYER.box) {
     PLAYER.box.style.left = playerX + "px";
-    PLAYER.box.style.top = 40 + "px";
+    PLAYER.box.style.top = playerY + "px";
   }
-  if(playerBubbleCont){
+
+  if (playerBubbleCont) {
     playerBubbleCont.style.left = playerX + "px";
     playerBubbleCont.style.top = playerY + "px";
   }
-
 
   if (direction !== 0 && PLAYER.spriteImg) {
     if (direction !== PLAYER.spriteDirection) {
@@ -131,11 +153,14 @@ function startGame() {
     playersrc = characterImg;
   }
 
-  PLAYER.box.style.left = 10 + "px";
-  PLAYER.box.style.top = 40 + "px";
+  playerX = 71;
+  playerY = groundLevel;
 
-  playerBubbleCont.style.left = 69 + "px";
-  playerBubbleCont.style.top = 435 + "px";
+  PLAYER.box.style.left = playerX + "px";
+  PLAYER.box.style.top = playerLimit + "px";
+
+  playerBubbleCont.style.left = playerX + "px";
+  playerBubbleCont.style.top = playerY + "px";
 
   // sfx.game.play();
   // sfx.game.loop = true;
@@ -183,8 +208,6 @@ function gameLoop() {
   
   // sfx.game.loop(true);
   // console.log(sfx.game)
-  
-
 
   let f_key_counter = 0;
   let pointsElement = document.getElementById("points");
@@ -199,38 +222,15 @@ function gameLoop() {
     movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
     animatePlayer();
   }
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "f" && !e.repeat) {
-    PLAYER.pointCount += 10;
-    pointsElement.innerHTML = PLAYER.pointCount;
-
-    const bubble = document.createElement("img");
-    bubble.src = "./img/pixil-frame-0 (6).png";
-    bubble.className = "bubble";
-
-    bubble.style.left = playerX + "px";
-    bubble.style.top = playerY + "px";
-
-    playerBubbleCont.style.left = playerX + "px";
-    playerBubbleCont.style.top = playerY + "px";
-
-    playerBubbleCont.appendChild(bubble);
-
-    bubble.addEventListener("animationend", () => {
-      bubble.remove();
-    });
-  }
-});
-
   isOnPlatform = false;
-
 
   if (!isOnGround) {
     velocityY += gravity;
   }
 
   playerY += velocityY;
+  PLAYER.box.style.top = playerLimit + "px";
+  playerBubbleCont.style.top = playerY + "px";
 
 
   if (playerY >= groundLevel) {
@@ -245,13 +245,14 @@ document.addEventListener("keydown", (e) => {
   for (let i = 0; i < platforms.level_1.length; i++) {
 
   let p = platforms.level_1[i];
-  let platformDiv = document.querySelectorAll(".platform")[i];
 
   let playerBottom = playerY + PLAYER.box.clientHeight;
   let previousBottom = playerBottom - velocityY;
 
   if (velocityY >= 0 && previousBottom <= p.y && playerBottom >= p.y && PLAYER.box.offsetLeft + PLAYER.box.clientWidth > p.x && PLAYER.box.offsetLeft < p.x + p.width) {
     playerY = p.y - PLAYER.box.clientHeight;
+    PLAYER.box.style.top = playerLimit + "px";
+    playerBubbleCont.style.top = playerY + "px";
     velocityY = 0;
     isOnGround = true;
     isOnPlatform = true;
