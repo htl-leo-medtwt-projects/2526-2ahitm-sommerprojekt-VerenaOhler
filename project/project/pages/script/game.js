@@ -185,7 +185,7 @@ function gameLoop() {
   // console.log(sfx.game)
   
 
-  // sfx.game.play();
+
   let f_key_counter = 0;
   let pointsElement = document.getElementById("points");
 
